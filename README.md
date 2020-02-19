@@ -15,3 +15,11 @@ Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto qu
 > Ver [What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
 La forma más simple que tenemos de evitar _bloquear_ nuestra aplicación es escribiendo código asincrónico, por ejemplo, utilizando [_callbacks_](https://github.com/undefinedschool/notes-callbacks).
+
+## Concurrencia y el _Event Loop_
+
+Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría no puede realizar tareas de forma _concurrente_. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**. Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ para realizar ciertas tareas en un 2do plano. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
+
+![JavaScript & the Event Loop](https://d6vdma9166ldh.cloudfront.net/media/images/9aacbcd0-44c5-45e1-b3eb-be84a2eb99d8.png)
+
+> 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: se encarga de **chequear el _stack_ de funciones actual y el _callback queue_ y si el _stack_ se encuentra vacío, toma el primer callback** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
