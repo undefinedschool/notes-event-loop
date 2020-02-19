@@ -14,7 +14,7 @@ Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto qu
 [![What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://img.youtube.com/vi/8aGhZQkoFbQ/0.jpg)](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 > Ver [What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
-La forma más simple que tenemos de evitar _bloquear_ nuestra aplicación es escribiendo código asincrónico, por ejemplo, utilizando [_callbacks_](https://github.com/undefinedschool/notes-callbacks).
+> 👉 **La forma que tenemos de evitar _bloquear_ nuestra aplicación es escribiendo código asincrónico, utilizando [_callbacks_](https://github.com/undefinedschool/notes-callbacks) o [_Promises_](https://github.com/undefinedschool/notes-es6-promises)**.
 
 ## Concurrencia y el _Event Loop_
 
