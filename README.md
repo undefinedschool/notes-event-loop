@@ -7,7 +7,7 @@
 
 JavaScript es un lenguaje de programación _single-thread_, lo que equivalente a decir que _sólo puede hacer 1 cosa a la vez_, ejecutar 1 sola instrucción y finalizarla antes de pasar a la siguiente.
 
-**Tener 1 sólo thread de ejecución significa tener también 1 sólo stack**, por lo que las operaciones _lentas_ (como el procesamiento de imágenes o los requests HTTP) resultan _bloqueantes_ (_bloquean_ el thread de ejecución), en el sentido de que el resto de las instrucciones de nuestro código no se ejecutarán hasta que estas finalicen.
+**Tener 1 sólo thread de ejecución significa tener también 1 sólo [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY)**, por lo que las operaciones _lentas_ (como el procesamiento de imágenes o los requests HTTP) resultan _bloqueantes_ (_bloquean_ el thread de ejecución), en el sentido de que el resto de las instrucciones de nuestro código no se ejecutarán hasta que estas finalicen.
 
 Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto que esto tendría en la performance de nuestra aplicación. Un browser por ejemplo, no podría realizar ciertas operaciones como renderizar la UI correspondiente, resultando en una experiencia de uso poco deseable.
 
@@ -23,3 +23,8 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría
 ![JavaScript & the Event Loop](https://d6vdma9166ldh.cloudfront.net/media/images/9aacbcd0-44c5-45e1-b3eb-be84a2eb99d8.png)
 
 > 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: se encarga de **chequear el _stack_ de funciones actual y el _callback queue_ y si el _stack_ se encuentra vacío, toma el primer callback** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
+
+## Tips
+
+- Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
+- Evitar realizar operaciones computacionalmente costosas en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video) 
