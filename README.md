@@ -24,6 +24,9 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría
 
 > 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: se encarga de **chequear el _stack_ de funciones actual y el _callback queue_ y si el _stack_ se encuentra vacío, toma el primer callback** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
 
+[![Jake Archibald: In The Loop - JSConf.Asia](https://img.youtube.com/vi/cCOL7MC4Pl0/0.jpg)](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
+> Ver [Jake Archibald: In The Loop - JSConf.Asia](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
+
 ## Tips
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
