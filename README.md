@@ -18,7 +18,7 @@ Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto qu
 
 ## Concurrencia y el _Event Loop_
 
-Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría no puede realizar tareas de forma _concurrente_. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**. Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ para realizar ciertas tareas en un 2do plano. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
+Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría no puede realizar tareas de forma _concurrente_. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**. Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ **para realizar ciertas tareas** en un 2do plano, es decir, **fuera del thread principal**. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
 
 ![JavaScript & the Event Loop](https://d6vdma9166ldh.cloudfront.net/media/images/9aacbcd0-44c5-45e1-b3eb-be84a2eb99d8.png)
 
