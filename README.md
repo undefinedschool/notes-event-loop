@@ -31,3 +31,5 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
 - Evitar realizar operaciones computacionalmente costosas en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video) 
+
+> 👉 Para más detalles, ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
