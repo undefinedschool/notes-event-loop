@@ -27,9 +27,9 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría
 Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y luego son encoladas (en el _callback queue_) para eventualmente ejecutarse en el thread principal.
 
 [![The Async Await Episode I Promised](https://img.youtube.com/vi/vn3tm0quoqE/0.jpg)](https://www.youtube.com/watch?v=vn3tm0quoqE)
-> Ver [](https://www.youtube.com/watch?v=vn3tm0quoqE)
+> Ver [The Async Await Episode I Promised](https://www.youtube.com/watch?v=vn3tm0quoqE)
 
-A su vez, las tareas pueden dividirse en _macro_ y _micro_ tareas:
+A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 
 - _macrotasks_: como [`SetInterval`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setInterval) o [`SetTimeout`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setTimeout), **se ejecutan en el siguiente _event loop_**, es decir, la próxima iteración.
 - _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_.
