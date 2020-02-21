@@ -24,8 +24,17 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría
 
 > 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: se encarga de **chequear el _stack_ de funciones actual y el _callback queue_ y si el _stack_ se encuentra vacío, toma el primer callback** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
 
-[![Jake Archibald: In The Loop - JSConf.Asia](https://img.youtube.com/vi/cCOL7MC4Pl0/0.jpg)](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
-> Ver [Jake Archibald: In The Loop - JSConf.Asia](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
+Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y luego son encoladas (en el _callback queue_) para eventualmente ejecutarse en el thread principal.
+
+[![The Async Await Episode I Promised](https://img.youtube.com/vi/vn3tm0quoqE/0.jpg)](https://www.youtube.com/watch?v=vn3tm0quoqE)
+> Ver [](https://www.youtube.com/watch?v=vn3tm0quoqE)
+
+A su vez, las tareas pueden dividirse en _macro_ y _micro_ tareas:
+
+- _macrotasks_: como [`SetInterval`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setInterval) o [`SetTimeout`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setTimeout), **se ejecutan en el siguiente _event loop_**, es decir, la próxima iteración.
+- _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_.
+
+> 👉 **El _Event Loop_ no forma parte de JavaScript** en si, sino del entorno donde este se ejecute (browser, Node, etc).
 
 ## Tips
 
