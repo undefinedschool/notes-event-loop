@@ -24,7 +24,7 @@ Como mencionamos antes, **JavaScript es _single-thread_**, por lo que no puede e
 
 ![JavaScript & the Event Loop](https://d6vdma9166ldh.cloudfront.net/media/images/9aacbcd0-44c5-45e1-b3eb-be84a2eb99d8.png)
 
-> 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: se encarga de **chequear el _stack_ de funciones actual y el _callback queue_ y si el _stack_ se encuentra vacío, toma el primer callback** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
+> 👉 **Cuando estas _APIs_ externas terminan de realizar la tarea asignada, la envían a una cola de tareas (_callback queue_)**. Es en este momento cuando **aparece el _event loop_ para** realizar una tarea muy simple: encargarse de **chequear el _stack_ de funciones actual y el _callback queue_; si el _stack_ se encuentra vacío, toma el primer callback<sup>1</sup>** (del _callback queue_) **y lo pushea al _stack_ para que sea ejecutado**.
 
 Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y luego son encoladas (en el _callback queue_) para eventualmente ejecutarse en el thread principal.
 
@@ -50,3 +50,7 @@ A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
 - Evitar realizar operaciones computacionalmente costosas en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video) 
+
+---
+
+<sup>1</sup>Hay tareas del _callback queue_ que tienen prioridad sobre otras y por lo tanto el event loop las moverá antes al thread principal. Ver [_macrotasks & microtasks_](https://github.com/undefinedschool/notes-event-loop#macrotasks--microtasks).
