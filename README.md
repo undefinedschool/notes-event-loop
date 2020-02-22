@@ -9,6 +9,8 @@ JavaScript es un lenguaje de programación _single-thread_, lo que equivalente a
 
 **Tener 1 sólo thread de ejecución significa tener también 1 sólo [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY)**, por lo que las operaciones _lentas_ (como el procesamiento de imágenes o los requests HTTP) resultan _bloqueantes_ (_bloquean_ el thread de ejecución), en el sentido de que el resto de las instrucciones de nuestro código no se ejecutarán hasta que estas finalicen.
 
+> **Nota:** llamamos operaciones _bloqueantes_ (o _blocking_) a aquellas que son _lentas_, de las que no podemos obtener un resultado de forma inmediata
+
 Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto que esto tendría en la performance de nuestra aplicación. Un browser por ejemplo, no podría realizar ciertas operaciones como renderizar la UI correspondiente, resultando en una experiencia de uso poco deseable.
 
 [![What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://img.youtube.com/vi/8aGhZQkoFbQ/0.jpg)](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
@@ -18,7 +20,7 @@ Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto qu
 
 ## Concurrencia y el _Event Loop_
 
-Como mencionamos antes, **JavaScript es _single-thread_**, por lo que en teoría no puede realizar tareas de forma _concurrente_. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**. Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ **para realizar ciertas tareas** en un 2do plano, es decir, **fuera del thread principal**. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
+Como mencionamos antes, **JavaScript es _single-thread_**, por lo que no puede ejecutar más de 1 tarea (proceso) a la vez. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**, de forma [_concurrente_](https://www.youtube.com/watch?v=kMr3mF71Kp4). Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ **para realizar ciertas tareas** en un 2do plano, es decir, **fuera del thread principal**. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
 
 ![JavaScript & the Event Loop](https://d6vdma9166ldh.cloudfront.net/media/images/9aacbcd0-44c5-45e1-b3eb-be84a2eb99d8.png)
 
@@ -28,8 +30,9 @@ Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y lueg
 
 > 👉 Es importante notar que **el _Event Loop_ no forma parte de JavaScript** en si, sino del entorno donde este se ejecute (browser, Node, etc).
 
-[![The Async Await Episode I Promised](https://img.youtube.com/vi/vn3tm0quoqE/0.jpg)](https://www.youtube.com/watch?v=vn3tm0quoqE)
-> Ver [The Async Await Episode I Promised](https://www.youtube.com/watch?v=vn3tm0quoqE)
+## Paso a paso
+
+> 👉 Ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
 
 ## _macrotasks_ & _microtasks_
 
@@ -38,9 +41,12 @@ A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 - _macrotasks_: como [`SetInterval`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setInterval) o [`SetTimeout`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setTimeout), **se ejecutan en el siguiente _event loop_**, es decir, la próxima iteración.
 - _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_ y se van a ejecutar antes.
 
+## Event Loop y [`async/await`](https://github.com/undefinedschool/notes-es2017-async-await)
+
+[![The Async Await Episode I Promised](https://img.youtube.com/vi/vn3tm0quoqE/0.jpg)](https://www.youtube.com/watch?v=vn3tm0quoqE)
+> Ver [The Async Await Episode I Promised](https://www.youtube.com/watch?v=vn3tm0quoqE)
+
 ## Tips
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
 - Evitar realizar operaciones computacionalmente costosas en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video) 
-
-> 👉 Para más detalles, ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
