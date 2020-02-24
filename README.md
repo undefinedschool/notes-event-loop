@@ -51,7 +51,13 @@ Por lo tanto **si una tarea toma mucho tiempo, estamos bloqueando la UI (y el _t
 A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 
 - _macrotasks_: como [`SetInterval`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setInterval) o [`SetTimeout`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setTimeout), **se ejecutan en el siguiente _event loop_**, es decir, la próxima iteración.
-- _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_ y se van a ejecutar antes.
+- _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_ y se van a ejecutar antes. Los mismo sucede con [_Async/Await_](https://github.com/undefinedschool/notes-es2017-async-await/), al tratarse de otra forma de escribir Promises.
+
+Podríamos pensar entonces que en realidad el _callback queue_ está compuesto por 2 colas más pequeñas: [_microtask queue_](https://javascript.info/microtask-queue) y [_macrotask queue_](https://javascript.info/event-loop#macrotasks-and-microtasks) y que el _Event Loop_ se va a encargar de asignar al thread principal, primero todas las _microtasks_ y a continuación, cuando todas estas se completen, las _macrotasks_.
+
+![](https://i.imgur.com/YfUpNlJ.png)
+
+> 👉 **Inmediatamente después de cada _macrotarea_, el _engine_ ejecuta todas las tareas de la cola de _microtareas_, antes de cualquier otra _macrotask_, _rendering_, etc**. Las _microtasks_ siempre tienen prioridad sobre el resto de las tareas asincrónicas.
 
 ## Event Loop y [`async/await`](https://github.com/undefinedschool/notes-es2017-async-await)
 
