@@ -30,6 +30,18 @@ Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y lueg
 
 > 👉 Es importante notar que **el _Event Loop_ no forma parte de JavaScript** en si, sino del entorno donde este se ejecute (browser, Node, etc).
 
+### Event Loop
+
+El concepto de _Event Loop_ resulta entonces, bastante simple. Se trata de un _loop infinito_ que espera a que el _thread principal_ esté libre y haya tareas disponibles esperando, para asignarle una nueva tarea, proveniente del _callback queue_, para luego quedarse esperando hasta que haya más tareas.
+
+### Event Loop y _rendering_
+
+**El _rendering_ en el browser nunca sucede mientras el runtime de JavaScript (engine) se encuentra ejecutando una tarea**, independientemente de si una tarea toma o no mucho tiempo. Los cambios que realicemos en el DOM no se verán reflejados hasta que la tarea finalice.
+
+Por lo tanto **si una tarea toma mucho tiempo, estamos bloqueando la UI (y el _thread_)** y el browser no puede ocpuarse de otras cosas (como procesar eventos). Luego de cierto tiempo, dependiendo de cada browser, mostrará un mensaje indicando que la página no responde, por lo que necesitaremos cerrar la pestaña, el browser o terminar de alguna forma el proceso. 
+
+> 👉 **Es por esto que debemos evitar realizar tareas muy complejas (computacionalmente costosas) en el thread principal (o que tomen mucho tiempo) si queremos evitar una mala UX**.
+
 ## Paso a paso
 
 > 👉 Ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
@@ -49,7 +61,8 @@ A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 ## Tips
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
-- Evitar realizar operaciones computacionalmente costosas en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video) 
+- Evitar realizar operaciones computacionalmente costosas (a nivel CPU) en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video)
+- [Dividir tareas costosas en tareas más chicas](https://javascript.info/event-loop#use-case-1-splitting-cpu-hungry-tasks), aprovechando el asincronismo
 
 ---
 
