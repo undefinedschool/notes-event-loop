@@ -53,7 +53,7 @@ A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 - _macrotasks_: como [`SetInterval`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setInterval) o [`SetTimeout`](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals#setTimeout), **se ejecutan en el siguiente _event loop_**, es decir, la próxima iteración.
 - _microtasks_: como una [Promise](https://github.com/undefinedschool/notes-es6-promises) resuelta, **se ejecutan antes del inicio del próximo _event loop_**, es decir, tienen prioridad sobre las _macrotasks_ y se van a ejecutar antes. Los mismo sucede con [_Async/Await_](https://github.com/undefinedschool/notes-es2017-async-await/), al tratarse de otra forma de escribir Promises.
 
-Podríamos pensar entonces que en realidad el _callback queue_ está compuesto por 2 colas más pequeñas: [_microtask queue_](https://javascript.info/microtask-queue) y [_macrotask queue_](https://javascript.info/event-loop#macrotasks-and-microtasks) y que el _Event Loop_ se va a encargar de asignar al thread principal, primero todas las _microtasks_ y a continuación, cuando todas estas se completen, las _macrotasks_.
+Podríamos decir entonces, que en realidad el _callback queue_ está compuesto por 2 colas más pequeñas: [_microtask queue_](https://javascript.info/microtask-queue) y [_macrotask queue_](https://javascript.info/event-loop#macrotasks-and-microtasks) y que el _Event Loop_ se va a encargar de asignar al thread principal, primero todas las _microtasks_ y a continuación, cuando todas estas se completen, las _macrotasks_.
 
 ![](https://i.imgur.com/YfUpNlJ.png)
 
@@ -69,6 +69,16 @@ Podríamos pensar entonces que en realidad el _callback queue_ está compuesto p
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
 - Evitar realizar operaciones computacionalmente costosas (a nivel CPU) en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video)
 - [Dividir tareas costosas en tareas más chicas](https://javascript.info/event-loop#use-case-1-splitting-cpu-hungry-tasks), aprovechando el asincronismo
+
+## _Web Workers_
+
+**Para realizar cálculos complejos u operaciones muy largas y evitar bloquear el event loop, lo más conveniente es utilizar [_Web Workers_](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)**.
+
+Básicamente, **nos permiten ejecutar código en otro thread, fuera del principal**.
+
+> 👉 **Web Workers pueden intercambiar información con el thread principal, pero tienen sus propias variables _e incluso su propio event loop_**.
+
+Los **Web Workers no tienen acceso al DOM**, por lo que suelen utilizarase para realizar cálculos complejos y aprovechar los múltiples cores del CPU _para poder ejecutar código de forma paralela_, a diferencia de la concurrencia que nos provee el asincronismo.
 
 ---
 
