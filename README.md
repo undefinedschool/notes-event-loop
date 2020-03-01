@@ -5,6 +5,29 @@
 
 # ![Notas sobre el Event Loop](https://i.imgur.com/eH6ryS6.png)
 
+## Notas sobre Asincronismo en JS
+
+- [Callbacks](https://github.com/undefinedschool/notes-callbacks)
+- [ES6: Promises](https://github.com/undefinedschool/notes-es6-promises)
+- [ES2017: Async/Await](https://github.com/undefinedschool/notes-es2017-async-await)
+- [Event Loop](https://github.com/undefinedschool/notes-event-loop)
+
+## Contenido
+
+- [Intro](https://github.com/undefinedschool/notes-event-loop#intro)
+- [Concurrencia y el _Event Loop_](https://github.com/undefinedschool/notes-event-loop#concurrencia-y-el-event-loop)
+  - [Event Loop](https://github.com/undefinedschool/notes-event-loop#event-loop)
+  - [Event Loop y _rendering_](https://github.com/undefinedschool/notes-event-loop#event-loop-y-rendering)
+  - [Paso a paso](https://github.com/undefinedschool/notes-event-loop#paso-a-paso)
+  - [_macrotasks_ & _microtasks_](https://github.com/undefinedschool/notes-event-loop#macrotasks--microtasks)
+- [Event Loop y Async/Await](https://github.com/undefinedschool/notes-event-loop#event-loop-y-asyncawait)
+- [Tips](https://github.com/undefinedschool/notes-event-loop#tips)
+- [_Web Workers_](https://github.com/undefinedschool/notes-event-loop#web-workers)
+
+---
+
+## Intro
+
 JavaScript es un lenguaje de programación _single-thread_, lo que equivalente a decir que _sólo puede hacer 1 cosa a la vez_, ejecutar 1 sola instrucción y finalizarla antes de pasar a la siguiente.
 
 **Tener 1 sólo thread de ejecución significa tener también 1 sólo [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY)**, por lo que las operaciones _lentas_ (como el procesamiento de imágenes o los requests HTTP) resultan _bloqueantes_ (_bloquean_ el thread de ejecución), en el sentido de que el resto de las instrucciones de nuestro código no se ejecutarán hasta que estas finalicen.
@@ -42,11 +65,11 @@ Por lo tanto **si una tarea toma mucho tiempo, estamos bloqueando la UI (y el _t
 
 > 👉 **Es por esto que debemos evitar realizar tareas muy complejas (computacionalmente costosas) en el thread principal (o que tomen mucho tiempo) si queremos evitar una mala UX**.
 
-## Paso a paso
+### Paso a paso
 
 > 👉 Ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
 
-## _macrotasks_ & _microtasks_
+### _macrotasks_ & _microtasks_
 
 A su vez, las tareas asincrónicas pueden dividirse en _macro_ y _micro_ tareas:
 
