@@ -5,12 +5,13 @@
 
 # ![Notas sobre el Event Loop](https://i.imgur.com/eH6ryS6.png)
 
-## Notas sobre Asincronismo en JS
+## Contenido relacionado
 
-- [Callbacks](https://github.com/undefinedschool/notes-callbacks)
-- [ES6: Promises](https://github.com/undefinedschool/notes-es6-promises)
-- [ES2017: Async/Await](https://github.com/undefinedschool/notes-es2017-async-await)
-- [Event Loop](https://github.com/undefinedschool/notes-event-loop)
+### `Async JS`
+
+- [**Callbacks**](https://github.com/undefinedschool/notes-callbacks)
+- [**ES6: Promises**](https://github.com/undefinedschool/notes-es6-promises)
+- [**ES2017: Async/Await**](https://github.com/undefinedschool/notes-es2017-async-await)
 
 ## Contenido
 
@@ -41,6 +42,8 @@ Si tenemos muchas operaciones _bloqueantes_, vemos claramente el gran impacto qu
 
 > 👉 **La forma que tenemos de evitar _bloquear_ nuestra aplicación es escribiendo código asincrónico, utilizando [_callbacks_](https://github.com/undefinedschool/notes-callbacks) o [_Promises_](https://github.com/undefinedschool/notes-es6-promises)**.
 
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
+
 ## Concurrencia y el _Event Loop_
 
 Como mencionamos antes, **JavaScript es _single-thread_**, por lo que no puede ejecutar más de 1 tarea (proceso) a la vez. Esto es cierto, **pero la plataforma (o _entorno_) sobre la que corremos JavaScript si permite realizar más tareas**, de forma [_concurrente_](https://www.youtube.com/watch?v=kMr3mF71Kp4). Por ejemplo, **a través del browser tenemos acceso a las [_Web APIs_](https://developer.mozilla.org/en-US/docs/Web/API)**, que nos proveen de más _threads_ **para realizar ciertas tareas** en un 2do plano, es decir, **fuera del thread principal**. **Algo similar ocurre en [Node](https://nodejs.org/uk/docs/guides/dont-block-the-event-loop/)**.
@@ -53,9 +56,13 @@ Las tareas asincrónicas se delegan a APIs externas (threads adicionales) y lueg
 
 > 👉 Es importante notar que **el _Event Loop_ no forma parte de JavaScript** en si, sino del entorno donde este se ejecute (browser, Node, etc).
 
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
+
 ### Event Loop
 
 El concepto de _Event Loop_ resulta entonces, bastante simple. Se trata de un _loop infinito_ que espera a que el _thread principal_ esté libre y haya tareas disponibles esperando, para asignarle una nueva tarea, proveniente del _callback queue_, para luego quedarse esperando hasta que haya más tareas.
+
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
 
 ### Event Loop y _rendering_
 
@@ -65,9 +72,13 @@ Por lo tanto **si una tarea toma mucho tiempo, estamos bloqueando la UI (y el _t
 
 > 👉 **Es por esto que debemos evitar realizar tareas muy complejas (computacionalmente costosas) en el thread principal (o que tomen mucho tiempo) si queremos evitar una mala UX**.
 
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
+
 ### Paso a paso
 
 > 👉 Ver [✨♻️ JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)
+
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
 
 ### _macrotasks_ & _microtasks_
 
@@ -82,16 +93,22 @@ Podríamos decir entonces, que en realidad el _callback queue_ está compuesto p
 
 > 👉 **Inmediatamente después de cada _macrotarea_, el _engine_ ejecuta todas las tareas de la cola de _microtareas_, antes de cualquier otra _macrotask_, _rendering_, etc**. Las _microtasks_ siempre tienen prioridad sobre el resto de las tareas asincrónicas.
 
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
+
 ## Event Loop y [`async/await`](https://github.com/undefinedschool/notes-es2017-async-await)
 
 [![The Async Await Episode I Promised](https://img.youtube.com/vi/vn3tm0quoqE/0.jpg)](https://www.youtube.com/watch?v=vn3tm0quoqE)
 > Ver [The Async Await Episode I Promised](https://www.youtube.com/watch?v=vn3tm0quoqE)
+
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
 
 ## Tips
 
 - Escribir **código asincrónico** (ver [callbacks](https://github.com/undefinedschool/notes-callbacks), [Promises](https://github.com/undefinedschool/notes-es6-promises), [Async/Await](https://github.com/undefinedschool/notes-es2017-async-await))
 - Evitar realizar operaciones computacionalmente costosas (a nivel CPU) en el [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY) para **no bloquear el event loop** (como procesamiento de imágenes o video)
 - [Dividir tareas costosas en tareas más chicas](https://javascript.info/event-loop#use-case-1-splitting-cpu-hungry-tasks), aprovechando el asincronismo
+
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
 
 ## _Web Workers_
 
@@ -102,6 +119,8 @@ Básicamente, **nos permiten ejecutar código en otro thread, fuera del principa
 > 👉 **Web Workers pueden intercambiar información con el thread principal, pero tienen sus propias variables _e incluso su propio event loop_**.
 
 Los **Web Workers no tienen acceso al DOM**, por lo que suelen utilizarase para realizar cálculos complejos y aprovechar los múltiples cores del CPU _para poder ejecutar código de forma paralela_, a diferencia de la concurrencia que nos provee el asincronismo.
+
+[↑ Ir al inicio](https://github.com/undefinedschool/notes-event-loop#contenido)
 
 ---
 
