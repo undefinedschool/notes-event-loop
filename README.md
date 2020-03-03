@@ -5,7 +5,7 @@
 
 # ![Notas sobre el Event Loop](https://i.imgur.com/eH6ryS6.png)
 
-## Contenido relacionado
+## Notas relacionadas
 
 ### `Async JS`
 
