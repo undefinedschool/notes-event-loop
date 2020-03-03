@@ -7,11 +7,12 @@
 
 ## Notas relacionadas
 
-### `Async JS`
+### `async`
 
 - [**Callbacks**](https://github.com/undefinedschool/notes-callbacks)
 - [**ES6: Promises**](https://github.com/undefinedschool/notes-es6-promises)
 - [**ES2017: Async/Await**](https://github.com/undefinedschool/notes-es2017-async-await)
+- [**NodeJS**](https://github.com/undefinedschool/notes-nodejs)
 
 ## Contenido
 
