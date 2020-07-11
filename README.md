@@ -18,7 +18,7 @@
 
 ## Intro
 
-JavaScript es un lenguaje de programación _single-thread_, lo que equivalente a decir que _sólo puede hacer 1 cosa a la vez_, ejecutar 1 sola instrucción y finalizarla antes de pasar a la siguiente.
+JavaScript es un lenguaje de programación _single-thread_, lo que equivale a decir que _sólo puede hacer 1 cosa a la vez_, ejecutar 1 sola instrucción y finalizarla antes de pasar a la siguiente.
 
 **Tener 1 sólo thread de ejecución significa tener también 1 sólo [_stack_](https://www.youtube.com/watch?v=W8AeMrVtFLY)**, por lo que las operaciones _lentas_ (como el procesamiento de imágenes o los requests HTTP) resultan _bloqueantes_ (_bloquean_ el thread de ejecución), en el sentido de que el resto de las instrucciones de nuestro código no se ejecutarán hasta que estas finalicen.
 
